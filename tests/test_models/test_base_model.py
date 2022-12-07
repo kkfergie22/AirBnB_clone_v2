@@ -7,6 +7,7 @@ from uuid import UUID
 import json
 import os
 import pycodestyle
+import inspect
 
 
 class test_basemodel(unittest.TestCase):
@@ -112,7 +113,7 @@ class test_basemodel(unittest.TestCase):
 
     def test_uuid(self):
         """
-        Testin UUID
+        Testing UUID
         """
         instance1 = BaseModel()
         instance2 = BaseModel()
@@ -186,7 +187,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_pep8_BaseModel(self):
         """Testing for pep8"""
-        style = pep8.StyleGuide(quiet=True)
+        style = pycodestyle.StyleGuide(quiet=True)
         p = style.check_files(['models/base_model.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
@@ -199,7 +200,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
     def test_method_BaseModel(self):
-        """chekcing if Basemodel have methods"""
+        """checking if Basemodel have methods"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
         self.assertTrue(hasattr(BaseModel, "save"))
         self.assertTrue(hasattr(BaseModel, "to_dict"))
@@ -208,7 +209,7 @@ class TestBaseModel(unittest.TestCase):
         """test if the base is an type BaseModel"""
         self.assertTrue(isinstance(self.base, BaseModel))
 
-    def test_save_BaesModel(self):
+    def test_save_BaseModel(self):
         """test if the save works"""
         self.base.save()
         self.assertNotEqual(self.base.created_at, self.base.updated_at)
